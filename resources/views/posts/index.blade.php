@@ -7,7 +7,6 @@
             <a href="{{route('posts.create')}}" class="btn btn-primary">
                 投稿を新規作成する
             </a>
-            
         </div>
         @foreach ($posts as $post)
             <div class="card mt-4">
@@ -29,7 +28,9 @@
                 </div>
             </div>
         @endforeach
-        
+        <div class="d-flex justify-content-center mb-5">
+            {{$posts->links()}}
+        </div>
     </div>
     
 @endsection('content')

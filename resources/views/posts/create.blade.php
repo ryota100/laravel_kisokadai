@@ -8,43 +8,51 @@
                 投稿の新規作成
             </h1>
         
-        <form method="POST" action="{{route('posts.store')}}">
-            {{csrf_field()}}
-            <fieldset class="mb4">
-                <div class=form-group">
-                <label for="titile">
-                    タイトル
-                </label>
-                <input 
-                    id="title"
-                    name="title"
-                    class="form-control"
-                    type="text" 
-                    >
-                </div>
-                <div>
-                    <label for="body">
-                    本文
+            <form method="POST" action="{{route('posts.store')}}">
+                {{csrf_field()}}
+                <fieldset class="mb4">
+                    <div class=form-group">
+                    <label for="titile">
+                        タイトル
                     </label>
-                    <textarea
-                        id="body"
-                        name="body"
+                    <input 
+                        id="title"
+                        name="title"
                         class="form-control"
-                        raws="4"
-                    >
-                    </textarea>
-                </div>
-                <div class="mt-5">
-                    <a class="btn btn-secondary" href="{{route('top')}}">
-                        キャンセル
-                    </a>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        投稿する
-                    </button>
-                </div>
-            </fieldset>
-        </form>
+                        value="{{old('title')}}"
+                        type="text" 
+                        >
+                        <div class="text-danger">
+                            {{$errors->first('title')}}
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <label for="body">
+                        本文
+                        </label>
+                        <textarea
+                            id="body"
+                            name="body"
+                            class="form-control"
+                            value={{old('title')}}
+                            raws="4"
+                        >{{old('body')}}</textarea>
+                        <div class="text-danger">
+                            {{$errors->first('body')}}
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <a class="btn btn-secondary" href="{{route('top')}}">
+                            キャンセル
+                        </a>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            投稿する
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
     

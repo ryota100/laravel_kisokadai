@@ -9,7 +9,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::orderBy('created_at','desc')->paginate(5);
         return view('posts.index',['posts' => $posts]);
     }
     
@@ -26,9 +26,7 @@ class PostsController extends Controller
             ]);
         
         Post::create($params);
-        
         return redirect()->route('top');
-        
     }
     
         public function show($post_id)
@@ -49,21 +47,15 @@ class PostsController extends Controller
             'title' => 'required|max:20',
             'body' => 'required|max:140',
             ]);
-        
         $post = Post::findOrFail($post_id);
         $post->fill($params)->save();
-        
         return redirect()->route('top');
     }
-    
             public function destroy($post_id)
     {
-        
         $post = Post::findOrFail($post_id);
         $post->delete();
-        
         return redirect()->route('top');
     }
-    
 }
 
